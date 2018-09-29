@@ -1,6 +1,6 @@
 <template>
     <div class="hello">
-
+        <span style="font-size: 24px;padding: 24px;">code-mirror vue示例</span>
         <codemirror
                 ref="myCm"
                 :value="content"
@@ -58,7 +58,8 @@ update bas_company set company_name='唯品会';`,
         },
         methods: {
             changes(){
-                console.log(this.content);
+                var codemirror = this.$refs.myCm.codemirror;
+                console.log(codemirror.getValue());
             },
             getValueTest(){
                 console.log(this.$refs.myCm.codemirror);
