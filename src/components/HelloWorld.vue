@@ -1,25 +1,26 @@
 <template>
-  <div class="hello">
+    <div class="hello">
 
+        <codemirror
+                ref="myCm"
+                :value="content"
+                :options="options"
+                @changes="changes"
+                class="code"
+        ></codemirror>
 
-      <codemirror
-              ref="myCm"
-              :value="content"
-              :options="options"
-              @changes="changes"
-              class="code"
-      ></codemirror>
+        <codemirror
+                ref="myCm2"
+                :value="content2"
+                :options="options2"
+                @changes="changes"
+                class="code"
+        ></codemirror>
 
-      <codemirror
-              ref="myCm2"
-              :value="content2"
-              :options="options2"
-              @changes="changes"
-              class="code"
-      ></codemirror>
+        <button @click="getValueTest()"> getValue</button>
 
-      <button @click="getValueTest()"> 获取脚本 </button>
-  </div>
+        <button @click="setValueTest()"> setValue</button>
+    </div>
 </template>
 
 <script>
@@ -33,56 +34,63 @@
     require('codemirror/addon/hint/javascript-hint.js');
     require('codemirror/addon/hint/sql-hint.js');
 
-export default {
-  name: 'HelloWorld',
-    data () {
-        return {
-            content:
-                    `function test(){console.log("hello")}`,
-            content2:
-`select * from bas_company limit 10;
+    export default {
+        name: 'HelloWorld',
+        data () {
+            return {
+                content: `function test(){console.log("hello")}`,
+                content2: `select * from bas_company limit 10;
 update bas_company set company_name='唯品会';`,
-            options: {
-                mode: 'javascript',
-                lineNumbers: true,
-                readOnly : false,
-        extraKeys: {"Ctrl": "autocomplete"}
-            },
-            options2: {
-                mode: {name: "text/x-mysql"},
-                lineNumbers: true,
-                readOnly : false,
-                extraKeys: {"Ctrl": "autocomplete"},
-                theme:"idea"
-            },
-        }
-    },
-    methods: {
-        changes(){
-            console.log(this.content);
+                options: {
+                    mode: 'javascript',
+                    lineNumbers: true,
+                    readOnly: false,
+                    extraKeys: {"Ctrl": "autocomplete"}
+                },
+                options2: {
+                    mode: {name: "text/x-mysql"},
+                    lineNumbers: true,
+                    readOnly: false,
+                    extraKeys: {"Ctrl": "autocomplete"},
+                    theme: "idea"
+                },
+            }
         },
-        getValueTest(){
-            alert(this.content);
-            alert(this.content2);
+        methods: {
+            changes(){
+                console.log(this.content);
+            },
+            getValueTest(){
+                console.log(this.$refs.myCm.codemirror);
+                console.log(this.$refs.myCm2.codemirror);
+                var codemirror = this.$refs.myCm.codemirror;
+                var codemirror2 = this.$refs.myCm2.codemirror;
+                alert(codemirror2.getValue());
+
+            },
+            setValueTest(){
+                var codemirror2 = this.$refs.myCm2.codemirror;
+                codemirror2.setValue(`select * from bas_company limit 10;\nupdate bas_company set company_name='唯品会' set value;`);
+                alert(codemirror2.getValue());
+            }
+        },
+        computed: {
+            codemirror() {
+                console.log("here");
+                return this.$refs.myCm.codemirror
+            }
+        },
+        components: {
+            codemirror
         }
-    },
-    computed: {
-        codemirror() {
-            console.log("here");
-            return this.$refs.myCm.codemirror
-        }
-    },
-    components:{
-        codemirror
     }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style>
     .CodeMirror {
-        font-size:24px !important;
+        font-size: 24px !important;
         height: 160px;
     }
 </style>
