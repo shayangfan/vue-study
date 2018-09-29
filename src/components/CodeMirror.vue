@@ -1,6 +1,6 @@
 <template>
     <div class="hello">
-        <span style="font-size: 24px;padding: 24px;">code-mirror vue示例</span>
+        <span style="font-size: 24px;padding: 24px;">code-mirror</span>
         <codemirror
                 ref="myCm"
                 :value="content"

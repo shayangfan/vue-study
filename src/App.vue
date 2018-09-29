@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+      <div style="height: 60px;line-height: 60px;">Vue 示例</div>
     <router-view/>
   </div>
 </template>
@@ -16,6 +17,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
