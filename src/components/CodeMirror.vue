@@ -90,8 +90,8 @@ update bas_company set company_name='唯品会';`,
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style>
-    .CodeMirror {
+    .code {
         font-size: 24px !important;
-        height: 160px;
+        height: 360px;
     }
 </style>
