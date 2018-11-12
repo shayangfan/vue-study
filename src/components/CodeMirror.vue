@@ -26,6 +26,7 @@
 <script>
 
     import { codemirror } from 'vue-codemirror';
+    import 'codemirror/lib/codemirror.css'
     import 'codemirror/theme/idea.css'
     require("codemirror/mode/python/python.js");
     require("codemirror/mode/javascript/javascript.js");
